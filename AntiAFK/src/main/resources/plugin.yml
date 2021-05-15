@@ -1,0 +1,12 @@
+name: Antiafk
+version: ${project.version}
+main: tr.com.infumia.antiafk.Antiafk
+api-version: 1.13
+authors: [Darkkandadr]
+description: Anti AFK plugin for Minecraft servers.
+website: www.infumia.com.tr
+commands:
+  antiafk:
+    permission: antiafk.admin
+    permission-message: You don't have permission to use this command.
+    description: Antiafk main command.

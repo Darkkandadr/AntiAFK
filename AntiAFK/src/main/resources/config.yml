@@ -1,0 +1,32 @@
+#License Code
+license-code: 'DARKINF_xXXxXx'
+# Blockbreak event check list
+block-break:
+  - COAL_ORE
+  - IRON_ORE
+  - GOLD_ORE
+  - DIAMOND_ORE
+  - REDSTONE_ORE
+  - EMERALD_ORE
+  - LAPIS_ORE
+#Chance for checking player
+check-chance: 0.25
+# Bot check menu item list
+menu-items:
+  COAL_ORE: '&aKömür Cevheri'
+  DIRT: '&aToprak'
+  SAND: '&aKum'
+  IRON_ORE: '&aDemir Cevheri'
+  GOLD_BLOCK: '&aAltın Bloğu'
+  GRASS: '&aÇim'
+  BEACON: '&aFener'
+  MINECART: '&aVagon'
+  BUCKET: '&aKova'
+# Kick options
+kick-mode: true
+kick-interval: 10
+kick-message: '&4Bot kontrolünü 60 saniye içerisinde yapmadığınızdan dolayı sunucudan atıldınız.'
+anti-rejoin: true
+# Plugin reload options
+reload-message: '&6[ANTIAFK] Eklenti yenilendi.'
+true-usage: '&6[ANTIAFK] &a/antiafk reload'
