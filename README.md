@@ -6,3 +6,5 @@ Designed for 1.8.8 servers not tested on other versions.
 - Changeable items
 - Changeable trigger blocks
 - Changeable kick options
+
+It has a license system, you can remove it from the main class 'Antiafk'. License api is closed already.
