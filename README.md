@@ -8,3 +8,4 @@ Designed for 1.8.8 servers not tested on other versions.
 - Changeable kick options
 
 It has a license system, you can remove it from the main class 'Antiafk'. License api is closed already.
+That was my first plugin attemp, do not take it seriously.
