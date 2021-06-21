@@ -20,36 +20,6 @@ public final class Antiafk extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        HttpResponse<JsonNode> response = Unirest.post("https://oyungar.com/api/product/read.php")
-                .header("accept", "*/*")
-                .header("IP", getIp())
-                .header("License_Code", getConfig().getString("license-code"))
-                .asJson();
-        if(response.isSuccess()){
-            JSONObject object = response.getBody().getObject();
-            JSONArray records = object.getJSONArray("records");
-            if(!records.isEmpty()) {
-                JSONObject jsonObject = records.getJSONObject(0);
-                if (jsonObject.getString("ip_adress").equals(getIp()) && jsonObject.getString("license_code").equals(getConfig().getString("license-code"))) {
-                    // no problem
-                }
-                else {
-                    Bukkit.getPluginManager().disablePlugin(this);
-                    Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&6[ANTIAFK] &eLisans geçersiz, eklenti devredışı bırakılıyor."));
-                    return;
-                }
-            }
-            else{
-                Bukkit.getPluginManager().disablePlugin(this);
-                Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&6[ANTIAFK] &eLisans geçersiz, eklenti devredışı bırakılıyor."));
-                return;
-            }
-        }
-        else{
-            Bukkit.getPluginManager().disablePlugin(this);
-            Bukkit.getConsoleSender().sendMessage(ColorUtil.colored("&6[ANTIAFK] &eAPI ile bağlantıda bir hata oluştu, ektenti yapımcısı ile görüşün."));
-            return;
-        }
         // Plugin startup logic
         SmartInventory inventory = new BasicSmartInventory(this);
         inventory.init();
@@ -67,18 +37,5 @@ public final class Antiafk extends JavaPlugin {
     public SmartInventory getInventory(){
         SmartInventory inventory = new BasicSmartInventory(this);
         return inventory;
-    }
-
-    private String getIp(){
-        try{
-            final URL url = new URL("http://checkip.amazonaws.com");
-            final BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            return in.readLine();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        return "127.0.0.1";
     }
 }
