@@ -2,13 +2,10 @@ package tr.com.infumia.antiafk;
 
 import io.github.portlek.smartinventory.Page;
 import io.github.portlek.smartinventory.SmartInventory;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.*;
 
 import java.security.SecureRandom;
@@ -25,7 +22,7 @@ public class EventListeners implements Listener {
         this.inventory = inventory;
     }
 
-    @EventHandler
+    /* @EventHandler
     public void onBlockBreak(BlockBreakEvent event){
         Player player = event.getPlayer();
         Material material = event.getBlock().getType();
@@ -43,19 +40,21 @@ public class EventListeners implements Listener {
         validEvent(player, event);
     }
 
-    @EventHandler
+     @EventHandler
     public void onAnyMove(PlayerMoveEvent event){
         validEvent(event.getPlayer(), event);
     }
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event){
         validEvent(event.getPlayer(), event);
-    }
+    } */
+
     @EventHandler
     public void onFishing(PlayerInteractEvent event){
         validEvent(event.getPlayer(), event);
     }
-    @EventHandler
+
+    /* @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event){
         validEvent(event.getPlayer(), event);
     }
@@ -64,21 +63,24 @@ public class EventListeners implements Listener {
         validEvent(event.getPlayer(), event);
     }
     @EventHandler
-    public void onTeleport(PlayerTeleportEvent event) { validEvent(event.getPlayer(), event);}
+    public void onTeleport(PlayerTeleportEvent event) { validEvent(event.getPlayer(), event);} */
+
+
     @EventHandler
     public void onFish(PlayerFishEvent event) {
-        if(chance(manager.getChance())){
-            Map<String, String> map = manager.getMenuItems();
-            String randomize = randomize(map.keySet());
-            Page.build(inventory, new ItemControllerMenu(manager, randomize))
-                    .row(1)
-                    .title(map.get(randomize))
-                    .tick(20)
-                    .canClose(closeEvent -> false)
-                    .async(false) // aslında false çaktırmayın
-                    .open(event.getPlayer());
+        if(event.getState().equals(PlayerFishEvent.State.FISHING)){
+            if(chance(manager.getChance())){
+                Map<String, String> map = manager.getMenuItems();
+                String randomize = randomize(map.keySet());
+                Page.build(inventory, new ItemControllerMenu(manager, randomize))
+                        .row(1)
+                        .title(map.get(randomize))
+                        .tick(20)
+                        .canClose(closeEvent -> false)
+                        .async(false) // aslında false çaktırmayın
+                        .open(event.getPlayer());
+            }
         }
-
     }
 
     private void validEvent(Player player, Cancellable event){
